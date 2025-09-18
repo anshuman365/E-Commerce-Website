@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
-import ProductCard from '@/components/ProductCard'
-import { productService } from '@/services/products'
+import ProductCard from '../components/Product_Card'
+import { productService } from '../services/products'
 
 export default function Products() {
   const [filters, setFilters] = useState({

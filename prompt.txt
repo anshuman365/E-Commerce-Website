@@ -1,10 +1,13 @@
-if any file left then give that either tell where to and how to deploy the front-end
+if any file left then give that either tell where to and 
+facing problem in running and buliding in render
+
 
 frontend
 ├── next.config.js
 ├── package.json
 ├── postcss.config.js
 ├── public
+│   └── placeholder.jpg
 ├── src
 │   ├── components
 │   │   ├── Footer.js
@@ -41,267 +44,117 @@ frontend
 ├── tailwind.config.js
 └── vercel.json
 
-11 directories, 29 files
+11 directories, 30 files
 .../AI_powered_quiz_app/ecommerce_store $
 
+the settings in render 
 
-check the command test
 
+Build & Deploy
+Repository
+The repository used for your Web Service.
+https://github.com/anshuman365/E-Commerce-Website
 
-.../AI_powered_quiz_app/ecommerce_store $ curl -X POST http://localhost:5000/api/v1/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "test@example.com",
-    "password": "password123",
-    "full_name": "Test User"
-  }'
-{
-  "error": "When initializing mapper mapped class User->users, expression 'Review' failed to locate a name ('Review'). If this is a class name, consider adding this relationship() to the <class 'app.models.user.User'> class after both dependent classes have been defined."
-}
-.../AI_powered_quiz_app/ecommerce_store $ curl -X POST http://localhost:5000/api/v1/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{
-    "email": "test@example.com",
-    "password": "password123"
-  }'
-{
-  "error": "One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'mapped class User->users'. Original exception was: When initializing mapper mapped class User->users, expression 'Review' failed to locate a name ('Review'). If this is a class name, consider adding this relationship() to the <class 'app.models.user.User'> class after both dependent classes have been defined."
-}
-.../AI_powered_quiz_app/ecommerce_store $ curl -X GET "http://localhost:5000/api/v1/products?page=1&per_page=10"
-<!doctype html>
-<html lang=en>
-<title>Redirecting...</title>
-<h1>Redirecting...</h1>
-<p>You should be redirected automatically to the target URL: <a href="http://localhost:5000/api/v1/products/?page=1&amp;per_page=10">http://localhost:5000/api/v1/products/?page=1&amp;per_page=10</a>. If not, click the link.
-.../AI_powered_quiz_app/ecommerce_store $ tree f*
+Edit
+Branch
+The Git branch to build and deploy.
+
+main
+
+Edit
+Git Credentials
+User providing the credentials to pull the repository.
+jaspreetsinghaniya64@gmail.com (you)
+Use My Credentials
+Root DirectoryOptional
+If set, Render runs commands from this directory instead of the repository root. Additionally, code changes outside of this directory do not trigger an auto-deploy. Most commonly used with a monorepo.
 frontend
-├── next.config.js
-├── package.json
-├── postcss.config.js
-├── public
-├── src
-│   ├── components
-│   │   ├── Header.js
-│   │   ├── Layout.js
-│   │   └── Product_Card.js
-│   ├── hooks
-│   │   └── useAuth.js
-│   ├── pages
-│   │   ├── _app.js
-│   │   ├── _document.js
-│   │   ├── cart.js
-│   │   ├── index.js
-│   │   ├── login.js
-│   │   ├── products.js
-│   │   └── register.js
-│   ├── services
-│   │   ├── api.js
-│   │   ├── auth.js
-│   │   ├── cart.js
-│   │   ├── orders.js
-│   │   └── products.js
-│   ├── styles
-│   │   └── globals.css
-│   └── utils
-├── tailwind.config.js
-└── vercel.json
 
-9 directories, 22 files
-.../AI_powered_quiz_app/ecommerce_store $ curl http://localhost:5000/health
-<!doctype html>
-<html lang=en>
-<title>404 Not Found</title>
-<h1>Not Found</h1>
-<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
-.../AI_powered_quiz_app/ecommerce_store $ curl http://localhost:5000/api/v1/products
-<!doctype html>
-<html lang=en>
-<title>Redirecting...</title>
-<h1>Redirecting...</h1>
-<p>You should be redirected automatically to the target URL: <a href="http://localhost:5000/api/v1/products/">http://localhost:5000/api/v1/products/</a>. If not, click the link.
-.../AI_powered_quiz_app/ecommerce_store $ curl -X POST http://localhost:5000/api/v1/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email": "user@example.com", "password": "password123", "full_name": "Test User"}'
-{
-  "error": "One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'mapped class User->users'. Original exception was: When initializing mapper mapped class User->users, expression 'Review' failed to locate a name ('Review'). If this is a class name, consider adding this relationship() to the <class 'app.models.user.User'> class after both dependent classes have been defined."
-}
-.../AI_powered_quiz_app/ecommerce_store $ curl -H "Authorization: Bearer <YOUR_TOKEN>" http://localhost:5000/api/v1/users/profile
-{
-  "msg": "Not enough segments"
-}
-.../AI_powered_quiz_app/ecommerce_store $ curl -X POST http://localhost:5000/api/v1/orders/checkout \
-  -H "Authorization: Bearer <YOUR_TOKEN>" \
-  -H "Content-Type: application/json" \
-  -d '{"payment_method": "cod", "shipping_address_id": 1}'
-{
-  "msg": "Not enough segments"
-}
-.../AI_powered_quiz_app/ecommerce_store $ cd backend
-flask db init
-flask db migrate
-flask db upgrade
-  Creating directory
-  '/storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/versions'
-  ...  done
-  Generating
-  /storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/README ...  done
-  Generating
-  /storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/alembic.ini
-  ...  done
-  Generating
-  /storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/env.py ...  done
-  Generating /storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/sc
-  ript.py.mako ...  done
-  Please edit configuration/connection/logging settings in
-  '/storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/alembic.ini'
-  before proceeding.
-Traceback (most recent call last):
-  File "/data/data/com.termux/files/usr/bin/flask", line 8, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask/cli.py", line 1064, in main
-    cli.main()
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1082, in main
-    rv = self.invoke(ctx)
-         ^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 788, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/decorators.py", line 33, in new_func
-    return f(get_current_context(), *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask/cli.py", line 358, in decorator
-    return __ctx.invoke(f, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 788, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_migrate/cli.py", line 104, in migrate
-    _migrate(directory, message, sql, head, splice, branch_label, version_path,
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_migrate/__init__.py", line 98, in wrapped
-    f(*args, **kwargs)
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_migrate/__init__.py", line 155, in migrate
-    command.revision(config, message, autogenerate=True, sql=sql,
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/command.py", line 236, in revision
-    script_directory.run_env()
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/script/base.py", line 586, in run_env
-    util.load_python_file(self.dir, "env.py")
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 95, in load_python_file
-    module = load_module_py(module_id, path)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 113, in load_module_py
-    spec.loader.exec_module(module)  # type: ignore
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
-  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-  File "/storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/env.py", line 25, in <module>
-    str(current_app.extensions['migrate'].db.get_engine().url).replace(
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 1017, in get_engine
-    return connector.get_engine()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 593, in get_engine
-    sa_url, options = self.get_options(sa_url, echo)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 608, in get_options
-    sa_url, options = self._sa.apply_driver_hacks(self._app, sa_url, options)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 933, in apply_driver_hacks
-    if sa_url.drivername.startswith('mysql'):
-       ^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'drivername'
-Traceback (most recent call last):
-  File "/data/data/com.termux/files/usr/bin/flask", line 8, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask/cli.py", line 1064, in main
-    cli.main()
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1082, in main
-    rv = self.invoke(ctx)
-         ^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1697, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 1443, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 788, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/decorators.py", line 33, in new_func
-    return f(get_current_context(), *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask/cli.py", line 358, in decorator
-    return __ctx.invoke(f, *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/click/core.py", line 788, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_migrate/cli.py", line 149, in upgrade
-    _upgrade(directory, revision, sql, tag, x_arg)
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_migrate/__init__.py", line 98, in wrapped
-    f(*args, **kwargs)
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_migrate/__init__.py", line 185, in upgrade
-    command.upgrade(config, revision, sql=sql, tag=tag)
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/command.py", line 406, in upgrade
-    script.run_env()
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/script/base.py", line 586, in run_env
-    util.load_python_file(self.dir, "env.py")
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 95, in load_python_file
-    module = load_module_py(module_id, path)
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/alembic/util/pyfiles.py", line 113, in load_module_py
-    spec.loader.exec_module(module)  # type: ignore
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
-  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
-  File "/storage/emulated/0/AI_powered_quiz_app/ecommerce_store/backend/migrations/env.py", line 25, in <module>
-    str(current_app.extensions['migrate'].db.get_engine().url).replace(
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 1017, in get_engine
-    return connector.get_engine()
-           ^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 593, in get_engine
-    sa_url, options = self.get_options(sa_url, echo)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 608, in get_options
-    sa_url, options = self._sa.apply_driver_hacks(self._app, sa_url, options)
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/data/data/com.termux/files/usr/lib/python3.12/site-packages/flask_sqlalchemy/__init__.py", line 933, in apply_driver_hacks
-    if sa_url.drivername.startswith('mysql'):
-       ^^^^^^^^^^^^^^^^^
-AttributeError: 'NoneType' object has no attribute 'drivername'
-.../ecommerce_store/backend $
+Edit
+Build Filters
+Include or ignore specific paths in your repo when determining whether to trigger an auto-deploy. Paths are relative to your repo's root directory. Learn more.
+
+Edit
+Included Paths
+Changes that match these paths will trigger a new build.
 
 
+Add Included Path
+Ignored Paths
+Changes that match these paths will not trigger a new build.
 
 
-.../ecommerce_store/backend $ python run.py
- * Serving Flask app 'app'
- * Debug mode: on
-WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
- * Running on http://127.0.0.1:5000
-Press CTRL+C to quit
- * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 737-084-764
-127.0.0.1 - - [18/Sep/2025 19:51:29] "POST /api/v1/auth/register HTTP/1.1" 400 -
-127.0.0.1 - - [18/Sep/2025 19:52:16] "POST /api/v1/auth/login HTTP/1.1" 400 -
-127.0.0.1 - - [18/Sep/2025 20:20:12] "GET /api/v1/products?page=1&per_page=10 HTTP/1.1" 308 -
-127.0.0.1 - - [18/Sep/2025 20:55:14] "GET /health HTTP/1.1" 404 -
-127.0.0.1 - - [18/Sep/2025 20:55:39] "GET /api/v1/products HTTP/1.1" 308 -
-127.0.0.1 - - [18/Sep/2025 20:55:55] "POST /api/v1/auth/register HTTP/1.1" 400 -
-127.0.0.1 - - [18/Sep/2025 20:56:01] "GET /api/v1/users/profile HTTP/1.1" 422 -
-127.0.0.1 - - [18/Sep/2025 20:56:10] "POST /api/v1/orders/checkout HTTP/1.1" 422 -
+Add Ignored Path
+Build Command
+Render runs this command to build your app before each deploy.
+frontend/ $
+npm install && npm run build
+
+Edit
+Pre-Deploy CommandOptional
+Render runs this command before the start command. Useful for database migrations and static asset uploads.
+frontend/ $
+
+Edit
+Start Command
+Render runs this command to start your app with each deploy.
+frontend/ $
+npm start or next start
+
+
+when running in render
+
+
+==> Cloning from https://github.com/anshuman365/E-Commerce-Website
+==> Checking out commit a0759b5853db5d91bbe6a28269334b291db529a7 in branch main
+==> Using Node.js version 22.16.0 (default)
+==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+==> Running build command 'npm install && npm run build'...
+added 415 packages, and audited 416 packages in 42s
+151 packages are looking for funding
+  run `npm fund` for details
+3 vulnerabilities (2 moderate, 1 critical)
+To address all issues, run:
+  npm audit fix --force
+Run `npm audit` for details.
+> ecommerce-frontend@1.0.0 build
+> next build && next export
+- warn No build cache found. Please configure build caching for faster rebuilds. Read more: https://nextjs.org/docs/messages/no-cache
+- info Linting and checking validity of types...
+- info Creating an optimized production build...
+Failed to compile.
+./src/components/Header.js
+Module not found: Can't resolve '@/hooks/useAuth'
+https://nextjs.org/docs/messages/module-not-found
+Import trace for requested module:
+./src/components/Layout.js
+./src/pages/_app.js
+./src/pages/index.js
+Module not found: Can't resolve '../components/ProductCard'
+https://nextjs.org/docs/messages/module-not-found
+./src/pages/orders.js
+Module not found: Can't resolve '@/services/orders'
+https://nextjs.org/docs/messages/module-not-found
+./src/pages/orders/[id].js
+Error: 
+  x Expected '}', got '=>'
+    ,-[/opt/render/project/src/frontend/src/pages/orders/[id].js:46:1]
+ 46 |               <div className="flex justify-between">
+ 47 |                 <span>Status:</span>
+ 48 |                 <span className={`px-3 py-1 rounded-full text-sm ${
+ 49 |                   order.status === 'completed' => 'bg-green-100 text-green-800' :
+    :                                                ^^
+ 50 |                   order.status === 'cancelled' ? 'bg-red-100 text-red-800' :
+ 51 |                   'bg-yellow-100 text-yellow-800'
+ 51 |                 }`}>
+    `----
+Caused by:
+    Syntax Error
+Import trace for requested module:
+./src/pages/orders/[id].js
+./src/pages/products.js
+Module not found: Can't resolve '@/components/ProductCard'
+https://nextjs.org/docs/messages/module-not-found
+> Build failed because of webpack errors
+==> Build failed 😞
+==> Common ways to troubleshoot your deploy: https://render.com/docs/troubleshooting-deploys

@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import Link from 'next/link'
-import { orderService } from '@/services/orders'
+import { orderService } from '../services/orders'
 
 export default function Orders() {
   const { data: orders, isLoading } = useQuery('orders', orderService.getOrders)

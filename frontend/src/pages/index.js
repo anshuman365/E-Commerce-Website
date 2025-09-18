@@ -1,12 +1,12 @@
 import { useQuery } from 'react-query'
-import ProductCard from '../components/ProductCard'
+import ProductCard from '../components/Product_Card'
 import { productService } from '../services/products'
 
 export default function Home() {
   const { data: products, isLoading } = useQuery(
     'products',
     () => productService.getProducts({ per_page: 12 }),
-    { staleTime: 5 * 60 * 1000 } // 5 minutes
+    { staleTime: 5 * 60 * 1000 }
   )
 
   if (isLoading) return <div>Loading...</div>

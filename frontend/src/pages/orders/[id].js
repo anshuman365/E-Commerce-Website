@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
-import { orderService } from '@/services/orders'
+import { orderService } from '../../services/orders'
 
 export default function OrderDetail() {
   const router = useRouter()
@@ -46,7 +46,7 @@ export default function OrderDetail() {
               <div className="flex justify-between">
                 <span>Status:</span>
                 <span className={`px-3 py-1 rounded-full text-sm ${
-                  order.status === 'completed' => 'bg-green-100 text-green-800' :
+                  order.status === 'completed' ? 'bg-green-100 text-green-800' :
                   order.status === 'cancelled' ? 'bg-red-100 text-red-800' :
                   'bg-yellow-100 text-yellow-800'
                 }`}>
