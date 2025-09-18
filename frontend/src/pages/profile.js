@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
-import { useAuth } from '@/hooks/useAuth'
+import { useAuth } from '../hooks/useAuth'
 
 export default function Profile() {
   const { user, logout } = useAuth()

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { authService } from '@/services/auth'
+import { authService } from '../services/auth'
 
 export default function Register() {
   const [formData, setFormData] = useState({
