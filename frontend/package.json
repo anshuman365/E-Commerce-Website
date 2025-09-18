@@ -4,7 +4,7 @@
   "description": "E-commerce frontend built with Next.js",
   "private": true,
   "scripts": {
-    "start": "next start",
+    "start": "npx serve@latest out",
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint"
