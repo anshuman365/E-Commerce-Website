@@ -4,9 +4,9 @@
   "description": "E-commerce frontend built with Next.js",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
     "start": "next start",
+    "build": "next build",
+    "dev": "next dev",
     "lint": "next lint"
   },
   "dependencies": {
