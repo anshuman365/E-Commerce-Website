@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
-import { productService } from '../services/products'
+import { productService } from '@/services/products'
 import Image from 'next/image'
 import { useState } from 'react'
-import { useCart } from '../hooks/useCart'
+import { useCart } from '@/hooks/useCart'
 
 export default function ProductDetail() {
   const router = useRouter()
