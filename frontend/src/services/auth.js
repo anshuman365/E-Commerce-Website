@@ -1,4 +1,4 @@
-import api from './api';
+import api from './api'
 
 export const authService = {
   login: (email, password) => 
@@ -10,9 +10,12 @@ export const authService = {
   logout: () => 
     api.post('/auth/logout'),
   
+  getProfile: () => 
+    api.get('/users/profile'),
+  
   requestPasswordReset: (email) => 
     api.post('/auth/password-reset/request', { email }),
   
   confirmPasswordReset: (token, newPassword) => 
     api.post('/auth/password-reset/confirm', { token, newPassword }),
-};
+}

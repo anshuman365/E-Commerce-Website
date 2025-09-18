@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ecommerce-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/out
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://barn-economics-bird-stated.trycloudflare.com/api/v1
+      - key: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+        value: your-stripe-publishable-key

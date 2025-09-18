@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
-import ProductCard from '@/components/ProductCard'
-import { productService } from '@/services/products'
+import ProductCard from '../components/ProductCard'
+import { productService } from '../services/products'
 
 export default function Home() {
   const { data: products, isLoading } = useQuery(
