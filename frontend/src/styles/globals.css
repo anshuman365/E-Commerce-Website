@@ -25,3 +25,26 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* Custom styles for the e-commerce store */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition-colors;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300 transition-colors;
+}
+
+.form-input {
+  @apply border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-md overflow-hidden;
+}

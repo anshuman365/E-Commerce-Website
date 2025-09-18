@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useQuery, useMutation } from 'react-query'
-import { cartService } from '@/services/cart'
-import { orderService } from '@/services/orders'
-import { useAuth } from '@/hooks/useAuth'
+import { cartService } from '../services/cart'
+import { orderService } from '../services/orders'
+import { useAuth } from '../hooks/useAuth'
 
 export default function Checkout() {
   const { user } = useAuth()

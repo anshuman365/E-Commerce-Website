@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from 'react-query'
 import Link from 'next/link'
-import { cartService } from '@/services/cart'
+import { cartService } from '../services/cart'
 
 export default function Cart() {
   const queryClient = useQueryClient()
