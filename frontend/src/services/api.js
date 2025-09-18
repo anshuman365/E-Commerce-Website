@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://barn-economics-bird-stated.trycloudflare.com/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://e-commerce-website-backend-6xku.onrender.com/api/v1';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

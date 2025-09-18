@@ -13,6 +13,7 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME', 'personalbanks247@gmail.com')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', 'jltd hepr yjnz kfex')
-    
+    STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY') or 'your-stripe-api-key'
+    GITHUB_TOKEN = os.environ.get('GITHUB_PERSONAL_ACCESS_TOKEN')
     FRONTEND_URL = os.environ.get('FRONTEND_URL') or 'http://localhost:3000'
     
