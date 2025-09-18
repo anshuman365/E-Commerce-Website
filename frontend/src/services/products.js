@@ -9,4 +9,10 @@ export const productService = {
   
   getCategories: () => 
     api.get('/categories'),
+  
+  getFeaturedProducts: () => 
+    api.get('/products', { params: { featured: true, per_page: 8 } }),
+  
+  searchProducts: (query, params = {}) => 
+    api.get('/products', { params: { q: query, ...params } }),
 };

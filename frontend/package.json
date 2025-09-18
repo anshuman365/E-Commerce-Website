@@ -4,10 +4,11 @@
   "description": "E-commerce frontend built with Next.js",
   "private": true,
   "scripts": {
-    "start": "npx serve@latest out",
-    "build": "next build",
     "dev": "next dev",
-    "lint": "next lint"
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "next": "13.4.9",

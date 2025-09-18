@@ -15,5 +15,5 @@ class Config:
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', 'jltd hepr yjnz kfex')
     STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY') or 'your-stripe-api-key'
     GITHUB_TOKEN = os.environ.get('GITHUB_PERSONAL_ACCESS_TOKEN')
-    FRONTEND_URL = os.environ.get('FRONTEND_URL') or 'http://localhost:3000'
+    FRONTEND_URL = os.environ.get('FRONTEND_URL') or 'https://e-commerce-website-gorz.onrender.com'
     

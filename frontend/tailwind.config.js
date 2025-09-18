@@ -9,8 +9,20 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      container: {
+        center: true,
+        padding: '1rem',
+        screens: {
+          lg: '1200px',
+          xl: '1200px',
+          '2xl': '1200px',
+        },
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.3s ease-in',
+        'pulse-slow': 'pulse 3s linear infinite',
       },
     },
   },
