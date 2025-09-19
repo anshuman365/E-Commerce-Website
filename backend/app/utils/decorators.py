@@ -1,16 +1,12 @@
 from functools import wraps
-from flask import jsonify
-from flask_jwt_extended import get_jwt_identity
-from ..models.user import User
+from flask import flash, redirect, url_for
+from flask_login import current_user
 
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        user_id = get_jwt_identity()
-        user = User.query.get(user_id)
-        
-        if not user or not user.is_admin:
-            return jsonify({'error': 'Admin access required'}), 403
-            
+        if not current_user.is_authenticated or not current_user.is_admin:
+            flash('You need to be an admin to access this page.', 'danger')
+            return redirect(url_for('admin.login'))
         return f(*args, **kwargs)
     return decorated_function

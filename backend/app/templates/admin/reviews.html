@@ -1,0 +1,124 @@
+<!-- templates/admin/reviews.html -->
+{% extends "admin/base.html" %}
+
+{% block title %}Review Management - FlaskShop Admin{% endblock %}
+{% block page_title %}Review Management{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5>Product Reviews</h5>
+        <span class="badge bg-primary">{{ reviews.total }} reviews</span>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Product</th>
+                        <th>Customer</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in reviews.items %}
+                    <tr>
+                        <td>{{ review.id }}</td>
+                        <td>
+                            <a href="{{ url_for('product.detail', product_id=review.product.id) }}" target="_blank">
+                                {{ review.product.name }}
+                            </a>
+                        </td>
+                        <td>{{ review.user.username }}</td>
+                        <td>
+                            <div class="rating">
+                                {% for i in range(5) %}
+                                <i class="bi bi-star{{ '-fill' if i < review.rating else '' }} text-warning"></i>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td>
+                            {% if review.comment %}
+                            <div class="comment-preview">
+                                {{ review.comment|truncate(50) }}
+                            </div>
+                            {% else %}
+                            <span class="text-muted">No comment</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ review.created_at.strftime('%Y-%m-%d') }}</td>
+                        <td>
+                            <span class="badge bg-{{ 'success' if review.is_approved else 'secondary' }}">
+                                {{ 'Approved' if review.is_approved else 'Pending' }}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <form action="{{ url_for('admin.toggle_review', review_id=review.id) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-{{ 'warning' if review.is_approved else 'success' }}">
+                                        <i class="bi bi-{{ 'x-circle' if review.is_approved else 'check-circle' }}"></i>
+                                    </button>
+                                </form>
+                                <form action="{{ url_for('admin.delete_review', review_id=review.id) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this review?')">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Pagination -->
+        <nav aria-label="Review pagination">
+            <ul class="pagination justify-content-center">
+                {% if reviews.has_prev %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('admin.reviews', page=reviews.prev_num) }}">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+                {% endif %}
+                
+                {% for page_num in reviews.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+                    {% if page_num %}
+                        {% if reviews.page == page_num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ page_num }}</span>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ url_for('admin.reviews', page=page_num) }}">{{ page_num }}</a>
+                        </li>
+                        {% endif %}
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if reviews.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('admin.reviews', page=reviews.next_num) }}">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

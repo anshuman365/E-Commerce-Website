@@ -16,4 +16,8 @@ class Config:
     STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY') or 'your-stripe-api-key'
     GITHUB_TOKEN = os.environ.get('GITHUB_PERSONAL_ACCESS_TOKEN')
     FRONTEND_URL = os.environ.get('FRONTEND_URL') or 'https://e-commerce-website-gorz.onrender.com'
-    
+
+    # File upload configuration
+    UPLOAD_FOLDER = os.path.join('app', 'static', 'uploads')
+    MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max file size
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}

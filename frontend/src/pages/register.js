@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useAuth } from '../hooks/useAuth'
@@ -13,9 +13,16 @@ export default function Register() {
   })
   const [confirmPassword, setConfirmPassword] = useState('')
   const [errors, setErrors] = useState({})
-  const { register, loading } = useAuth()
+  const { register, loading, user } = useAuth()
   const router = useRouter()
   const { redirect } = router.query
+
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (user) {
+      router.push(redirect || '/')
+    }
+  }, [user, redirect, router])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -61,7 +68,7 @@ export default function Register() {
     
     try {
       await register(formData)
-      router.push(redirect ? `/login?redirect=${redirect}` : '/login')
+      // No need to redirect here as the useEffect will handle it
     } catch (error) {
       // Error is handled in the useAuth hook
     }
@@ -97,6 +104,7 @@ export default function Register() {
                 placeholder="Full Name"
                 value={formData.full_name}
                 onChange={handleChange}
+                disabled={loading}
               />
               {errors.full_name && <p className="mt-1 text-sm text-red-600">{errors.full_name}</p>}
             </div>
@@ -114,6 +122,7 @@ export default function Register() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={handleChange}
+                disabled={loading}
               />
               {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
             </div>
@@ -130,6 +139,7 @@ export default function Register() {
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={handleChange}
+                disabled={loading}
               />
             </div>
             <div>
@@ -146,6 +156,7 @@ export default function Register() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={handleChange}
+                disabled={loading}
               />
               {errors.password && <p className="mt-1 text-sm text-red-600">{errors.password}</p>}
             </div>
@@ -168,6 +179,7 @@ export default function Register() {
                     setErrors({ ...errors, confirmPassword: '' })
                   }
                 }}
+                disabled={loading}
               />
               {errors.confirmPassword && <p className="mt-1 text-sm text-red-600">{errors.confirmPassword}</p>}
             </div>
@@ -180,6 +192,7 @@ export default function Register() {
               type="checkbox"
               required
               className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              disabled={loading}
             />
             <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
               I agree to the{' '}

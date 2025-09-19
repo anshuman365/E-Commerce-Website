@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexShop - Premium E-Commerce Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+        }
+        
+        .hero-pattern {
+            background: linear-gradient(120deg, #4f46e5, #7c3aed);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-card {
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .deal-countdown {
+            background: linear-gradient(45deg, #ef4444, #f97316);
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(145deg, #ffffff, #f1f5f9);
+            box-shadow: 5px 5px 15px #d1d9e6, -5px -5px 15px #ffffff;
+        }
+        
+        .newsletter {
+            background: linear-gradient(120deg, #0f172a, #1e293b);
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links li:hover {
+            color: #6366f1;
+            cursor: pointer;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-indigo-600">NexShop</h1>
+                    <nav class="hidden md:flex ml-10 space-x-8">
+                        <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                        <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Products</a>
+                        <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Categories</a>
+                        <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">Deals</a>
+                        <a href="#" class="text-gray-700 hover:text-indigo-600 font-medium">About</a>
+                        <a href="/api/v1/admin/login" class="text-gray-700 hover:text-indigo-600 font-medium">Admin</a>
+                    </nav>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:block relative">
+                        <input type="text" placeholder="Search products..." class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    </div>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600 relative">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                        <span class="absolute -top-2 -right-2 text-xs bg-indigo-600 text-white rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </a>
+                    <a href="#" class="text-gray-700 hover:text-indigo-600">
+                        <i class="fas fa-user-circle text-xl"></i>
+                    </a>
+                    <button class="md:hidden text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern text-white py-16 md:py-24">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Summer Sale Up To 50% Off</h2>
+                <p class="text-xl mb-6">Get the latest products with amazing discounts. Limited time offer!</p>
+                <div class="flex space-x-4">
+                    <button class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">Shop Now</button>
+                    <button class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition duration-300">Learn More</button>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=772&q=80" alt="Shopping Experience" class="rounded-xl shadow-xl w-full md:max-w-md">
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Shop By Category</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="category-card bg-gray-50 p-6 rounded-xl text-center transition duration-300">
+                    <div class="bg-indigo-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tshirt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Fashion</h3>
+                    <p class="text-gray-600 text-sm">Explore trends</p>
+                </div>
+                
+                <div class="category-card bg-gray-50 p-6 rounded-xl text-center transition duration-300">
+                    <div class="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mobile-alt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Electronics</h3>
+                    <p class="text-gray-600 text-sm">Gadgets & Devices</p>
+                </div>
+                
+                <div class="category-card bg-gray-50 p-6 rounded-xl text-center transition duration-300">
+                    <div class="bg-yellow-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-couch text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Home</h3>
+                    <p class="text-gray-600 text-sm">Furniture & Decor</p>
+                </div>
+                
+                <div class="category-card bg-gray-50 p-6 rounded-xl text-center transition duration-300">
+                    <div class="bg-red-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heartbeat text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Health</h3>
+                    <p class="text-gray-600 text-sm">Fitness & Wellness</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Sale Countdown -->
+    <section class="py-12 bg-indigo-50">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-2xl p-6 shadow-md">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-2">Flash Sale</h2>
+                        <p class="text-gray-600">Hurry up! Limited time offer</p>
+                    </div>
+                    <div class="deal-countdown mt-4 md:mt-0 px-4 py-2 rounded-lg text-white flex items-center space-x-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">02</div>
+                            <div class="text-sm">Hours</div>
+                        </div>
+                        <div class="text-2xl font-bold">:</div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">45</div>
+                            <div class="text-sm">Minutes</div>
+                        </div>
+                        <div class="text-2xl font-bold">:</div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold">18</div>
+                            <div class="text-sm">Seconds</div>
+                        </div>
+                    </div>
+                    <button class="mt-4 md:mt-0 bg-indigo-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300">View All Deals</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">Featured Products</h2>
+            <p class="text-gray-600 text-center mb-12">Discover our most popular products</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for product in featured_products %}
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative">
+                        {% if product.images and product.images|length > 0 %}
+                        <img src="{{ product.images[0] }}" alt="{{ product.name }}" class="product-image">
+                        {% else %}
+                        <img src="https://via.placeholder.com/300" alt="{{ product.name }}" class="product-image">
+                        {% endif %}
+                        
+                        {% if product.discount_price %}
+                        <span class="absolute top-4 left-4 bg-red-500 text-white text-xs px-2 py-1 rounded">-{{ ((product.price - product.discount_price) / product.price * 100)|round|int }}%</span>
+                        {% endif %}
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">{{ product.name }}</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">({{ product.reviews|length }} reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                {% if product.discount_price %}
+                                <span class="text-lg font-bold text-indigo-600">${{ product.discount_price }}</span>
+                                <span class="text-gray-600 text-sm line-through ml-2">${{ product.price }}</span>
+                                {% else %}
+                                <span class="text-lg font-bold text-indigo-600">${{ product.price }}</span>
+                                {% endif %}
+                            </div>
+                            <button class="bg-indigo-100 text-indigo-600 p-2 rounded-full hover:bg-indigo-600 hover:text-white transition duration-300">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">New Arrivals</h2>
+            <p class="text-gray-600 text-center mb-12">Check out our latest products</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for product in recent_products %}
+                <div class="product-card bg-white rounded-xl overflow-hidden shadow-md">
+                    <div class="relative">
+                        {% if product.images and product.images|length > 0 %}
+                        <img src="{{ product.images[0] }}" alt="{{ product.name }}" class="product-image">
+                        {% else %}
+                        <img src="https://via.placeholder.com/300" alt="{{ product.name }}" class="product-image">
+                        {% endif %}
+                        
+                        <span class="absolute top-4 left-4 bg-green-500 text-white text-xs px-2 py-1 rounded">New</span>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold mb-2">{{ product.name }}</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="text-gray-600 text-sm ml-2">({{ product.reviews|length }} reviews)</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                {% if product.discount_price %}
+                                <span class="text-lg font-bold text-indigo-600">${{ product.discount_price }}</span>
+                                <span class="text-gray-600 text-sm line-through ml-2">${{ product.price }}</span>
+                                {% else %}
+                                <span class="text-lg font-bold text-indigo-600">${{ product.price }}</span>
+                                {% endif %}
+                            </div>
+                            <button class="bg-indigo-100 text-indigo-600 p-2 rounded-full hover:bg-indigo-600 hover:text-white transition duration-300">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4">What Our Customers Say</h2>
+            <p class="text-gray-600 text-center mb-12">Read testimonials from our satisfied customers</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card p-6 rounded-xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The quality of the products I purchased exceeded my expectations. Shipping was fast and the customer service was excellent!"</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Michael Chen</h4>
+                            <p class="text-gray-600 text-sm">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-6 rounded-xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"I've been shopping with NexShop for over a year now and I'm always impressed with their product selection and prices. Highly recommend!"</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=686&q=80" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-semibold">Sarah Johnson</h4>
+                            <p class="text-gray-600 text-sm">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card p-6 rounded-xl">
+                    <div class="flex text-yellow-400 mb-4">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"The return process was so easy when I needed to exchange a item. This level of customer service keeps me coming back to shop again."</p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db1604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Customer" class="w-12 h-12 rounded-full object-cover">
+                        <div class="ml-4">
+                            <h4 class="font-semibold">James Wilson</h4>
+                            <p class="text-gray-600 text-sm">Verified Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter py-16 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+            <p class="max-w-2xl mx-auto mb-8">Get the latest updates on new products, special offers, and exclusive discounts delivered straight to your inbox.</p>
+            
+            <div class="max-w-md mx-auto flex flex-col sm:flex-row">
+                <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-lg sm:rounded-r-none rounded-r-lg sm:mb-0 mb-3 text-gray-900 focus:outline-none">
+                <button class="bg-indigo-600 px-6 py-3 rounded-r-lg sm:rounded-l-none rounded-l-lg font-semibold hover:bg-indigo-700 transition duration-300">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">NexShop</h3>
+                    <p class="text-gray-400 mb-4">Your one-stop shop for all your needs. We offer high-quality products with fast shipping and excellent customer service.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Shop</h3>
+                    <ul class="footer-links text-gray-400">
+                        <li>All Products</li>
+                        <li>New Arrivals</li>
+                        <li>Best Sellers</li>
+                        <li>Sale Items</li>
+                        <li>Gift Cards</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Information</h3>
+                    <ul class="footer-links text-gray-400">
+                        <li>About Us</li>
+                        <li>Contact Us</li>
+                        <li>Shipping Policy</li>
+                        <li>Returns & Exchanges</li>
+                        <li>Privacy Policy</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <address class="text-gray-400 not-italic">
+                        <p class="mb-2"><i class="fas fa-map-marker-alt mr-2"></i> 123 Commerce St, City, Country</p>
+                        <p class="mb-2"><i class="fas fa-phone-alt mr-2"></i> +1 (123) 456-7890</p>
+                        <p class="mb-2"><i class="fas fa-envelope mr-2"></i> support@nexshop.com</p>
+                    </address>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 NexShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle (simplified version)
+            const menuButton = document.querySelector('button');
+            menuButton.addEventListener('click', function() {
+                alert('Mobile menu would open here. In a real implementation, this would show a navigation menu.');
+            });
+            
+            // Add to cart animation
+            const addToCartButtons = document.querySelectorAll('.product-card button');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.classList.add('bg-green-500', 'text-white');
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-shopping-cart"></i>';
+                        this.classList.remove('bg-green-500', 'text-white');
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

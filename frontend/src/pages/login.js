@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useAuth } from '../hooks/useAuth'
@@ -7,16 +7,23 @@ import { toast } from 'react-toastify'
 export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { login, loading } = useAuth()
+  const { login, loading, user } = useAuth()
   const router = useRouter()
   const { redirect } = router.query
+
+  // Redirect if user is already logged in
+  useEffect(() => {
+    if (user) {
+      router.push(redirect || '/')
+    }
+  }, [user, redirect, router])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     
     try {
       await login({ email, password })
-      router.push(redirect || '/')
+      // No need to redirect here as the useEffect will handle it
     } catch (error) {
       // Error is handled in the useAuth hook
     }
@@ -52,6 +59,7 @@ export default function Login() {
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
               />
             </div>
             <div>
@@ -68,6 +76,7 @@ export default function Login() {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
               />
             </div>
           </div>
@@ -79,6 +88,7 @@ export default function Login() {
                 name="remember-me"
                 type="checkbox"
                 className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                disabled={loading}
               />
               <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                 Remember me

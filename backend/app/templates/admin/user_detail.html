@@ -1,0 +1,121 @@
+<!-- templates/admin/user_detail.html -->
+{% extends "admin/base.html" %}
+
+{% block title %}User Details - FlaskShop Admin{% endblock %}
+{% block page_title %}User Details: {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>User Information</h5>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <div class="bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 80px; height: 80px; font-size: 2rem;">
+                        {{ user.username[0]|upper }}
+                    </div>
+                </div>
+                
+                <table class="table table-sm">
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Username</th>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Full Name</th>
+                        <td>{{ user.full_name if user.full_name else 'Not set' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>
+                            <span class="badge bg-{{ 'success' if user.is_active else 'danger' }}">
+                                {{ 'Active' if user.is_active else 'Inactive' }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Admin</th>
+                        <td>
+                            <span class="badge bg-{{ 'warning' if user.is_admin else 'secondary' }}">
+                                {{ 'Yes' if user.is_admin else 'No' }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Registered</th>
+                        <td>{{ user.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                    <tr>
+                        <th>Last Updated</th>
+                        <td>{{ user.updated_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                    </tr>
+                </table>
+                
+                <form action="{{ url_for('admin.toggle_user', user_id=user.id) }}" method="POST" class="d-grid">
+                    <button type="submit" class="btn btn-{{ 'success' if not user.is_active else 'danger' }}">
+                        {{ 'Activate' if not user.is_active else 'Deactivate' }} User
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Order History ({{ orders|length }} orders)</h5>
+            </div>
+            <div class="card-body p-0">
+                {% if orders %}
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>{{ order.order_number }}</td>
+                                <td>{{ order.created_at.strftime('%Y-%m-%d') }}</td>
+                                <td>
+                                    <span class="badge bg-{{ 'success' if order.status == 'Delivered' else 'warning' if order.status == 'Processing' else 'info' if order.status == 'Shipped' else 'secondary' }}">
+                                        {{ order.status }}
+                                    </span>
+                                </td>
+                                <td>${{ "%.2f"|format(order.total_amount) }}</td>
+                                <td>
+                                    <a href="{{ url_for('admin.order_detail', order_id=order.id) }}" class="btn btn-sm btn-info">
+                                        <i class="bi bi-eye"></i> View
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <p class="text-muted">No orders found for this user.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
